@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo -e "
+Enter commit message :"
+read message
+
+echo -e "
+The password is :
+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
+"
+echo "Pulling the lastest changes:"
+git pull
+
+echo "
+Adding & committing the new changes:"
+git add .
+git commit -m "${message}"
+
+echo "
+Pushing the new changes:"
+git push
+
