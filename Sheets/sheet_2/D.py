@@ -2,6 +2,9 @@ def int_listing(num):
     length = 0
     digits = []
 
+    if num == 0:
+        return [0], 1
+
     while num != 0:
         length += 1
         digits.append(num % 10)

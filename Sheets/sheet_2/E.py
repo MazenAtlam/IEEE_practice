@@ -2,14 +2,16 @@ def append_list(original, new):
     for element in new:
         original.append(element)
 
-def generate_lucky_list(no_of_digits):
+def generate_lucky_list(no_of_digits, previous_list=None):
     lucky_digit = [4, 7]
     lucky_list = []
 
     if no_of_digits <= 1:
         return lucky_digit
 
-    previous_list = generate_lucky_list(no_of_digits - 1)
+    if not previous_list:
+        previous_list= generate_lucky_list(no_of_digits - 1)
+
     for i in range(2):
         higher_digit = lucky_digit[i] * (10 ** (no_of_digits - 1))
         append_list(lucky_list, list(map(lambda n: n + higher_digit, previous_list)))
@@ -18,6 +20,9 @@ def generate_lucky_list(no_of_digits):
 
 def num_length(num):
     length = 0
+
+    if num == 0:
+        return 1
 
     while num != 0:
         length += 1
@@ -47,7 +52,7 @@ def main():
         elif num > max_lucky:
             max_lucky = 0
             num_len += 1
-            lucky_numbers = generate_lucky_list(num_len)
+            lucky_numbers = generate_lucky_list(num_len, lucky_numbers)
             max_lucky = lucky_numbers[-1]
 
         sum += next_lucky_num(num, lucky_numbers)
