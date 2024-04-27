@@ -17,16 +17,13 @@ def is_good_k(num, k):
         return False
 
     digits, num_len = int_listing(num)
-    if num_len != k + 1:
+    if num_len < k + 1:
         return False
 
     digits.sort()
-    for i in range(num_len - 1):
-        if digits[i] == digits[i + 1] or digits[i] > k:
+    for i in range(k + 1):
+        if i not in digits:
             return False
-
-    if digits[num_len - 1] > k:
-        return False
 
     return True
 
